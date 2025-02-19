@@ -35,9 +35,6 @@ def test_log_monad_basic(memory_handler: MemoryHandler):
     def sample_function() -> str:
         return "Success!"
 
-    # Clear any existing messages
-    memory_handler.clear()
-
     result = sample_function()
 
     assert result == "Success!"
@@ -50,9 +47,6 @@ def test_log_monad_with_error(memory_handler: MemoryHandler):
     @log_monad(error_message="An error occurred", logger=logging.getLogger(__name__))
     def sample_function() -> None:
         raise ValueError("Test error")
-
-    # Clear any existing messages
-    memory_handler.clear()
 
     with pytest.raises(ValueError):
         sample_function()
@@ -67,9 +61,6 @@ def test_log_monad_with_warn_on_error(memory_handler: MemoryHandler):
     def sample_function() -> None:
         raise ValueError("Test error")
 
-    # Clear any existing messages
-    memory_handler.clear()
-
     with pytest.raises(ValueError):
         sample_function()
 
@@ -83,9 +74,6 @@ def test_log_monad_with_info_on_error(memory_handler: MemoryHandler):
     @log_monad(error_message="An error occurred", info_on_error=True, logger=logging.getLogger(__name__))
     def sample_function() -> None:
         raise ValueError("Test error")
-
-    # Clear any existing messages
-    memory_handler.clear()
 
     with pytest.raises(ValueError):
         sample_function()
