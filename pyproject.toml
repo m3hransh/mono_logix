@@ -6,6 +6,64 @@ dependencies = []
 
 [dependency-groups]
 dev = [
+    "pyright>=1.1.394",
     "pytest>=8.3.4",
     "ruff>=0.9.6",
 ]
+
+[tool.ruff]
+# Base configuration
+line-length = 120
+target-version = "py312"
+
+# Enable recommended rules
+select = [
+    "F",    # Pyflakes
+    "E",    # Pycodestyle errors
+    "W",    # Pycodestyle warnings
+    "UP",   # Pyupgrade
+    "I",    # Isort
+    "C90",  # McCabe complexity
+    "SIM",  # flake8-simplify
+]
+
+# Additional rules to enable
+extend-select = [
+    "RUF",  # Ruff-specific rules
+]
+
+# Files/directories to exclude
+exclude = [
+    ".git",
+    "__pycache__",
+    "venv",
+    "dist",
+    "build",
+]
+
+# Enable automatic fixes
+fix = true
+
+[tool.pyright]
+# Base configuration
+pythonVersion = "3.12"
+pythonPlatform = "All"
+typeCheckingMode = "strict"
+
+# Strict checks configuration
+strict = [
+    "checkUntypedFunctionSignatures",
+    "reportMissingParameterType",
+    "reportMissingTypeStubs",
+]
+
+# Additional checks
+reportUnusedImport = true
+reportPrivateUsage = "warning"
+reportUnusedVariable = "warning"
+reportUnusedExpression = "warning"
+reportUnnecessaryTypeIgnoreComment = true
+
+# Execution environment
+include = ["src"]
+exclude = ["**/tests"]
