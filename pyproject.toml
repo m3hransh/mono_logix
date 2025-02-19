@@ -19,6 +19,7 @@ build-backend = "setuptools.build_meta"
 
 [tool.setuptools]
 packages = ["monologix"]
+package-dir = {"monologix" = "src/monologix"}
 
 [tool.ruff]
 # Base configuration
